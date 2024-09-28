@@ -1,0 +1,8 @@
+Role based Auth
+    Roles - ADMIN, EMPLOYEE, CUSTOMER
+
+Admin seeder
+Admin creates EMPLOYEE
+
+CUSTOMER REGISTER and LOGIN
+

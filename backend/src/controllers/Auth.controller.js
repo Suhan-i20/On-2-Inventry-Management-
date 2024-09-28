@@ -4,7 +4,7 @@ const CatchAsync = require("../utils/CatchAsync");
 
 class AuthController {
   static RegisterUser = CatchAsync(async (req, res) => {
-    console.debug("RegisterUser");
+    console.debug("RegisterUser 1");
     const res_obj = await AuthService.RegisterUser(req.body);
     console.debug("RegisterUser Data", res_obj);
     res.status(httpStatus.CREATED).send(res_obj);

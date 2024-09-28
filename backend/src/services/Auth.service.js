@@ -30,6 +30,7 @@ class AuthService {
     // }
 
     const checkExist = await UserModel.findOne({ email });
+    console.log("checkExits", checkExist);
     if (checkExist) {
       throw new ApiError(httpStatus.BAD_REQUEST, "User Alrady Regisrered");
     }
@@ -37,15 +38,18 @@ class AuthService {
     const user = await UserModel.create({
       email,
       password,
-      name,
+      username: name,
+      role: "consumer",
     });
 
     const tokend = generatoken(user);
     const refresh_token = generatoken(user, "2d");
-    await ProfileModel.create({
+    const newProfile = await ProfileModel.create({
       user: user._id,
       refresh_token,
     });
+
+    console.log(newProfile);
 
     return {
       msg: "User Register Successflly",
@@ -75,7 +79,7 @@ class AuthService {
 
     //   throw new ApiError(httpStatus.BAD_REQUEST, "Captcha Not Valid");
     // }
-    
+
     const checkExist = await UserModel.findOne({ email });
     if (!checkExist) {
       throw new ApiError(httpStatus.BAD_REQUEST, "User Not Regisrered");

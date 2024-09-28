@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const Schema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
       required: true,
     },
     consumer: {
@@ -17,7 +17,6 @@ const Schema = new mongoose.Schema(
         {
           name: {
             type: String,
-            trim: true,
           },
           price: {
             type: Number,
@@ -34,6 +33,6 @@ const Schema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const model = mongoose.model("Order", Schema);
+const model = mongoose.model("Order", orderSchema);
 
 module.exports = model;
